@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Screen Chart</title>
+    <style>
+        /* Reset margins and padding for full-page layout */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevent scrolling */
+        }
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%; /* Takes up the entire viewport */
+            box-sizing: border-box;
+        }
+        .flourish-embed {
+            width: 100%;
+            height: 100%; /* Ensures the chart fills the container */
+        }
+    </style>
+</head>
+<body>
+    <p style="text-align: justify; font-size: 15px; font-family: Arial; background-color: white; padding: 10px;">
+        <b>Summary Report:</b> The data indicates a consistent decline in Methamphetamine retention times, dropping from 11.945 in Q1 2022 to 10.161 in Q4 2024, potentially indicating increased trafficking or altered production methods. Ketamine exhibits peaks in Q2 2022 and Q2 2023, suggesting shifting smuggling routes or demand. Cocaine retention times remain stable but rise slightly in Q2 of each year, pointing to heightened activity during this period. Heroin displays steadily increasing retention times, particularly in late 2024, indicating potential changes in composition. LSD shows minor fluctuations, with a dip in Q4 2022 and rise in Q2 2023, reflecting variability in trafficking patterns.
+    </p>
+    <div class="chart-container">
+        <div class="flourish-embed flourish-chart" data-src="visualisation/21183895">
+            <script src="https://public.flourish.studio/resources/embed.js"></script>
+            <noscript>
+                <img src="https://public.flourish.studio/visualisation/21183895/thumbnail" width="100%" alt="chart visualization" />
+            </noscript>
+        </div>
+    </div>
+</body>
+</html>
