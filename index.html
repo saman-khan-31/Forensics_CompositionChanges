@@ -1,42 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full-Screen Chart</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drug Composition Chart</title>
     <style>
-        /* Reset margins and padding for full-page layout */
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden; /* Prevent scrolling */
-        }
-        .chart-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%; /* Takes up the entire viewport */
-            box-sizing: border-box;
-        }
-        .flourish-embed {
-            width: 100%;
-            height: 100%; /* Ensures the chart fills the container */
-        }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+      }
+
+      .language-toggle {
+        text-align: right;
+        padding: 10px 20px;
+      }
+
+      .language-toggle div {
+        display: inline-flex;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .language-toggle button {
+        padding: 8px 16px;
+        border: none;
+        cursor: pointer;
+        background-color: #eee;
+        color: black;
+        user-select: none;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .language-toggle button.active {
+        background-color: #018657;
+        color: white;
+      }
+
+      #summary-text {
+        text-align: justify;
+        font-size: 16px;
+        background-color: white;
+        padding: 10px;
+        direction: ltr;
+      }
+
+      h3 {
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+
+      .chart-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 80%;
+        box-sizing: border-box;
+      }
+
+      .flourish-embed {
+        width: 100%;
+        height: 100%;
+      }
     </style>
-</head>
-<body>
-    <p style="text-align: justify; font-size: 15px; font-family: Arial; background-color: white; padding: 10px;">
-        <b>Summary Report:</b> The data indicates a consistent decline in Methamphetamine retention times, dropping from 11.945 in Q1 2022 to 10.161 in Q4 2024, potentially indicating increased trafficking or altered production methods. Ketamine exhibits peaks in Q2 2022 and Q2 2023, suggesting shifting smuggling routes or demand. Cocaine retention times remain stable but rise slightly in Q2 of each year, pointing to heightened activity during this period. Heroin displays steadily increasing retention times, particularly in late 2024, indicating potential changes in composition. LSD shows minor fluctuations, with a dip in Q4 2022 and rise in Q2 2023, reflecting variability in trafficking patterns.
-    </p>
-    <div class="chart-container">
-        <div class="flourish-embed flourish-chart" data-src="visualisation/21183895">
-            <script src="https://public.flourish.studio/resources/embed.js"></script>
-            <noscript>
-                <img src="https://public.flourish.studio/visualisation/21183895/thumbnail" width="100%" alt="chart visualization" />
-            </noscript>
-        </div>
+  </head>
+
+  <body>
+    <div class="language-toggle">
+      <div>
+        <button id="en-btn" class="active" onclick="setLanguage('en')">
+          English
+        </button>
+        <button id="ar-btn" onclick="setLanguage('ar')">العربية</button>
+      </div>
     </div>
-</body>
+
+    <p id="summary-text">
+      <b>Summary Report:</b> The data indicates a consistent decline in
+      Methamphetamine retention times, dropping from 11.945 in Q1 2022 to 10.161
+      in Q4 2024, potentially indicating increased trafficking or altered
+      production methods. Ketamine exhibits peaks in Q2 2022 and Q2 2023,
+      suggesting shifting smuggling routes or demand. Cocaine retention times
+      remain stable but rise slightly in Q2 of each year, pointing to heightened
+      activity during this period. Heroin displays steadily increasing retention
+      times, particularly in late 2024, indicating potential changes in
+      composition. LSD shows minor fluctuations, with a dip in Q4 2022 and rise
+      in Q2 2023, reflecting variability in trafficking patterns.
+    </p>
+
+    <h3 id="chart-title">
+      Changes in Drug Composition (Based on Retention Times)
+    </h3>
+
+    <div class="chart-container">
+      <div
+        class="flourish-embed flourish-chart"
+        data-src="visualisation/21183895"
+      >
+        <script src="https://public.flourish.studio/resources/embed.js"></script>
+        <noscript>
+          <img
+            src="https://public.flourish.studio/visualisation/21183895/thumbnail"
+            width="100%"
+            alt="chart visualization"
+          />
+        </noscript>
+      </div>
+    </div>
+
+    <script>
+      const translations = {
+        en: {
+          summary:
+            "<b>Summary Report:</b> The data indicates a consistent decline in Methamphetamine retention times, dropping from 11.945 in Q1 2022 to 10.161 in Q4 2024, potentially indicating increased trafficking or altered production methods. Ketamine exhibits peaks in Q2 2022 and Q2 2023, suggesting shifting smuggling routes or demand. Cocaine retention times remain stable but rise slightly in Q2 of each year, pointing to heightened activity during this period. Heroin displays steadily increasing retention times, particularly in late 2024, indicating potential changes in composition. LSD shows minor fluctuations, with a dip in Q4 2022 and rise in Q2 2023, reflecting variability in trafficking patterns.",
+          chartTitle: "Changes in Drug Composition (Based on Retention Times)",
+        },
+        ar: {
+          summary:
+            "<b>تقرير ملخص:</b> تشير البيانات إلى انخفاض مستمر في أوقات احتجاز الميثامفيتامين من 11.945 في الربع الأول من عام 2022 إلى 10.161 في الربع الرابع من عام 2024، مما يشير إلى زيادة الاتجار أو تغييرات في طرق الإنتاج. يظهر الكيتامين ارتفاعات في الربع الثاني من عامي 2022 و2023، مما يدل على تغييرات في طرق التهريب أو الطلب. تظل أوقات احتجاز الكوكايين مستقرة ولكنها ترتفع قليلاً في الربع الثاني من كل عام، مما يشير إلى زيادة النشاط خلال هذه الفترة. يعرض الهيروين أوقات احتجاز متزايدة باستمرار، خاصة في أواخر عام 2024، مما يدل على تغييرات محتملة في التركيب. يظهر الـ LSD تقلبات طفيفة مع انخفاض في الربع الرابع من عام 2022 وارتفاع في الربع الثاني من عام 2023، مما يعكس التغيرات في أنماط التهريب.",
+          chartTitle:
+            "التغيرات في تركيب المخدرات (استنادًا إلى أوقات الاحتجاز)",
+        },
+      };
+
+      let currentLang = "en";
+
+      function setLanguage(lang) {
+        currentLang = lang;
+
+        document.getElementById("summary-text").innerHTML =
+          translations[lang].summary;
+        document.getElementById("chart-title").textContent =
+          translations[lang].chartTitle;
+
+        document.getElementById("summary-text").style.direction =
+          lang === "ar" ? "rtl" : "ltr";
+
+        document
+          .getElementById("en-btn")
+          .classList.toggle("active", lang === "en");
+        document
+          .getElementById("ar-btn")
+          .classList.toggle("active", lang === "ar");
+      }
+    </script>
+  </body>
 </html>
